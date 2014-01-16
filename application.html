@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title>On the Edge: Hero Setup</title>
+
+    <meta charset="utf-8" />
+
+    <meta name="description" content="A hero setup utility for On the Edge game." />
+    <meta name="keywords" content="ote,notadota,hero,robot,setup,configurator" />
+    <meta name="author" content="Michal Wirth, OTE Team member" />
+
+    <link href="assets/favicon.png" type="image/png" rel="shortcut icon" />
+
+    <link href="http://fonts.googleapis.com/css?family=Michroma" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
+
+    <script src="lib/jquery-1.10.2.min.js"></script>
+    <script src="lib/quintus-0.2.0.min.js"></script>
+
+    <script src="src/globals.js"></script>
+
+    <script src="inputs/parameters.js"></script>
+    <script src="inputs/heroes.js"></script>
+    <script src="inputs/items.js"></script>
+
+    <script src="src/components.js"></script>
+    <script src="src/sprites.js"></script>
+    <script src="src/scenes.js"></script>
+    <script src="src/main.js"></script>
+
+    <!-- BEGIN OF PHP -> JS BRIDGE -->
+    <script>
+
+      var defineParameters = function () {
+        return {
+          userName: "test-user",
+          passToken: "b7b81c85caea2c4041d447937e896a6e",
+          heroName: "ball",
+          repairChargeRatio: 4,
+          usedItems: {
+            headSlot: "",
+            handSlot: "wa",
+            bodySlot1: "",
+            bodySlot2: ""
+          }
+        };
+      };
+
+    </script>
+    <script language="php">
+
+      // see http://kangax.github.io/nfe/ why this solution
+
+      echo "<" . "script>";
+      echo "
+        defineParameters = function () {
+          return {
+            userName: \"" . $values[ "userName" ] . "\",
+            passToken: \"" . $values[ "passToken" ] . "\",
+            heroName: \"" . $values[ "heroName" ] . "\",
+            repairChargeRatio: " . $values[ "repairChargeRatio" ] . ",
+            usedItems: {
+              headSlot: \"" . $values[ "usedItems" ][ "headSlot" ] . "\",
+              handSlot: \"" . $values[ "usedItems" ][ "handSlot" ] . "\",
+              bodySlot1: \"" . $values[ "usedItems" ][ "bodySlot1" ] . "\",
+              bodySlot2: \"" . $values[ "usedItems" ][ "bodySlot2" ] . "\"
+            }
+          };
+        };
+      ";
+      echo "<" . "/script>";
+
+    </script>
+    <!-- END OF PHP -> JS BRIDGE -->
+
+  </head>
+
+  <body>
+  </body>
+
+</html>
